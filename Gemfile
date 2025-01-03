@@ -29,7 +29,7 @@ gem "solid_cable"
 gem "bootsnap", require: false
 
 # Active Storage validations
-gem 'active_storage_validations'
+gem "active_storage_validations"
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
@@ -38,38 +38,38 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Bootstrap e SASS
-gem 'bootstrap', '~> 5.3.0'
-gem 'sassc-rails'
+gem "bootstrap", "~> 5.3.0"
+gem "sassc-rails"
 
 # Autenticação
-gem 'devise'
+gem "devise"
 
 # Paginação
-gem 'kaminari'
+gem "kaminari"
 
 # Validações para Active Storage
-gem 'active_storage_validations'
+gem "active_storage_validations"
 
 # Cache
-gem 'solid_cache'
+gem "solid_cache"
 
 # Variáveis de ambiente
-gem 'dotenv-rails'
+gem "dotenv-rails"
 
 # Processamento assíncrono
-gem 'sidekiq'
+gem "sidekiq"
 
-gem 'redis'
+gem "redis"
 
-gem 'mutex_m'
-gem 'bigdecimal'
+gem "mutex_m"
+gem "bigdecimal"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :development do
