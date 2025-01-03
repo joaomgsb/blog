@@ -23,5 +23,11 @@ module Blog
     # Configuração de idioma e fuso horário
     config.i18n.default_locale = :'pt-BR'
     config.time_zone = "Brasilia"
+
+    # Configuração para evitar dump do schema após migrações
+    config.active_record.dump_schema_after_migration = false
+
+    # Configuração para evitar warnings com autoloading em produção
+    config.add_autoload_paths_to_load_path = false
   end
 end
