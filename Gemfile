@@ -55,9 +55,6 @@ gem "active_storage_validations"
 # Cache
 gem "solid_cache"
 
-# Variáveis de ambiente
-gem "dotenv-rails"
-
 # Processamento assíncrono
 gem "sidekiq"
 
