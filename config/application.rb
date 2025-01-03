@@ -9,21 +9,17 @@ Bundler.require(*Rails.groups)
 module Blog
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
+    config.load_defaults 7.0
 
-    # Please, add to the `ignore` list any other `lib` subdirectories that do
-    # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    # Adiciona o diretório `lib` ao autoload paths
+    config.autoload_paths << Rails.root.join('lib')
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
-    
+    # Ignora subdiretórios específicos dentro de `lib`
+    ignored_dirs = %w(assets tasks)
+    ignored_dirs.each do |dir|
+      config.eager_load_paths.delete(Rails.root.join('lib', dir))
+    end
+
     # Configuração de idioma e fuso horário
     config.i18n.default_locale = :'pt-BR'
     config.time_zone = 'Brasilia'
