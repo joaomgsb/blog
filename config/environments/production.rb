@@ -10,7 +10,10 @@ Rails.application.configure do
   config.active_storage.service = :local
   config.force_ssl = true
   config.log_tags = [ :request_id ]
-  config.logger = ActiveSupport::TaggedLogging.logger(STDOUT)
+
+  # Corrigir logger
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
   config.active_support.report_deprecations = false
   config.cache_store = :memory_store
