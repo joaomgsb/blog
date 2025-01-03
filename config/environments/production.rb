@@ -24,7 +24,7 @@ Rails.application.configure do
   config.force_ssl = true
 
   # Tags de log
-  config.log_tags = [:request_id]
+  config.log_tags = [ :request_id ]
 
   # Configuração do logger
   config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
@@ -53,4 +53,3 @@ Rails.application.configure do
   config.assets.compile = false # Desative para evitar compilação dinâmica
   config.assets.digest = true # Gera nomes únicos para ativos
 end
-
