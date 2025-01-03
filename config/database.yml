@@ -2,20 +2,19 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: Jotinha011973
-  host: localhost
 
 development:
   <<: *default
   database: blog_development
+  username: postgres
+  password: <%= ENV['DEV_DATABASE_PASSWORD'] %> # Configure no seu ambiente local
 
 test:
   <<: *default
   database: blog_test
+  username: postgres
+  password: <%= ENV['TEST_DATABASE_PASSWORD'] %> # Configure no seu ambiente local
 
 production:
   <<: *default
-  database: blog_production
-  username: blog
-  password: <%= ENV['BLOG_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
