@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Tags</h1>
+    <%= link_to new_tag_path, class: "btn btn-primary" do %>
+      <i class="bi bi-plus-lg"></i> Nova Tag
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <% if @tags.any? %>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Posts</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @tags.each do |tag| %>
+                    <tr>
+                      <td><%= link_to tag.name, tag_path(tag), class: "text-decoration-none" %></td>
+                      <td><%= tag.posts.count %></td>
+                      <td>
+                        <%= link_to edit_tag_path(tag), class: "btn btn-sm btn-outline-primary me-2" do %>
+                          <i class="bi bi-pencil"></i>
+                        <% end %>
+                        <%= button_to tag_path(tag), method: :delete, class: "btn btn-sm btn-outline-danger", form: { style: 'display: inline-block' }, data: { turbo_confirm: "Tem certeza? Isso removerá a tag de todos os posts." } do %>
+                          <i class="bi bi-trash"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <div class="text-center py-4">
+              <p class="text-muted mb-0">Nenhuma tag cadastrada.</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Sobre Tags</h5>
+          <p class="card-text">
+            Tags ajudam a organizar e categorizar os posts, facilitando a navegação e busca de conteúdo específico.
+          </p>
+          <ul class="list-unstyled mb-0">
+            <li><i class="bi bi-check2 text-success"></i> Organize seus posts</li>
+            <li><i class="bi bi-check2 text-success"></i> Facilite a busca</li>
+            <li><i class="bi bi-check2 text-success"></i> Melhore a navegação</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

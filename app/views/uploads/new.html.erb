@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Upload de Posts</h2>
+          
+          <div class="alert alert-info">
+            <h5>Como formatar seu arquivo TXT:</h5>
+            <pre class="mb-0"><code>Título do Primeiro Post
+#tag1 #tag2
+Conteúdo do primeiro post...
+
+---
+
+Título do Segundo Post
+#tag3 #tag4
+Conteúdo do segundo post...</code></pre>
+          </div>
+
+          <%= form_with(url: uploads_path, multipart: true, local: true) do |f| %>
+            <div class="mb-3">
+              <%= f.label :file, "Arquivo TXT", class: "form-label" %>
+              <%= f.file_field :file, class: "form-control", accept: "text/plain" %>
+              <div class="form-text">
+                Selecione um arquivo TXT contendo seus posts.
+                Use '---' para separar múltiplos posts.
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <%= f.submit "Enviar Arquivo", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+          <div class="mt-3 text-center">
+            <%= link_to "Voltar para Posts", posts_path, class: "text-decoration-none" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

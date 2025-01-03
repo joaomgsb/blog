@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Recuperar Senha</h2>
+
+          <%= form_with(url: passwords_path, method: :post, local: true) do |f| %>
+            <div class="mb-3">
+              <%= f.label :email, "Email", class: "form-label" %>
+              <%= f.email_field :email, class: "form-control", required: true, autofocus: true %>
+              <div class="form-text">Digite o email associado à sua conta.</div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <%= f.submit "Recuperar Senha", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+          <div class="mt-3 text-center">
+            <%= link_to "Voltar ao login", new_user_session_path, class: "text-decoration-none" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

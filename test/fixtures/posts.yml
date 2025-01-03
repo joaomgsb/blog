@@ -1,0 +1,9 @@
+one:
+  title: Meu Primeiro Post
+  content: Conteúdo do primeiro post
+  user: one
+
+two:
+  title: Meu Segundo Post
+  content: Conteúdo do segundo post
+  user: two

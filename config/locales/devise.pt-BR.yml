@@ -1,0 +1,39 @@
+pt-BR:
+  devise:
+    sessions:
+      signed_in: "Login realizado com sucesso!"
+      signed_out: "Logout realizado com sucesso!"
+      already_signed_out: "Logout já realizado."
+    failure:
+      already_authenticated: "Você já está logado."
+      inactive: "Sua conta ainda não foi ativada."
+      invalid: "Email ou senha inválidos."
+      locked: "Sua conta está bloqueada."
+      last_attempt: "Você tem mais uma tentativa antes de sua conta ser bloqueada."
+      not_found_in_database: "Email ou senha inválidos."
+      timeout: "Sua sessão expirou. Por favor, faça login novamente para continuar."
+      unauthenticated: "Você precisa fazer login ou se registrar antes de continuar."
+    registrations:
+      signed_up: "Bem-vindo! Você se registrou com sucesso."
+      signed_up_but_inactive: "Você se registrou com sucesso. Porém, sua conta ainda não está ativada."
+      signed_up_but_locked: "Você se registrou com sucesso. Porém, sua conta está bloqueada."
+      updated: "Sua conta foi atualizada com sucesso."
+      update_needs_confirmation: "Você atualizou sua conta com sucesso, mas precisamos verificar seu email. Por favor, verifique seu email e clique no link de confirmação."
+      destroyed: "Até logo! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve."
+    mailer:
+      confirmation_instructions:
+        subject: "Instruções de confirmação"
+      reset_password_instructions:
+        subject: "Instruções para redefinir sua senha"
+      unlock_instructions:
+        subject: "Instruções para desbloquear"
+    passwords:
+      no_token: "Você não pode acessar esta página sem vir de um email de redefinição de senha. Se você veio de um email de redefinição de senha, por favor, certifique-se de usar a URL completa fornecida."
+      send_instructions: "Você receberá um email com instruções sobre como redefinir sua senha em alguns minutos."
+      send_paranoid_instructions: "Se seu email existir em nosso banco de dados, você receberá um link de recuperação de senha em seu email em alguns minutos."
+      updated: "Sua senha foi alterada com sucesso. Você está logado agora."
+      updated_not_active: "Sua senha foi alterada com sucesso."
+    confirmations:
+      send_instructions: "Você receberá um email com instruções para confirmar sua conta em alguns minutos."
+      send_paranoid_instructions: "Se seu email existir em nosso banco de dados, você receberá um email com instruções para confirmar sua conta em alguns minutos."
+      confirmed: "Sua conta foi confirmada com sucesso."

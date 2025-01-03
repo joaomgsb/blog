@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center">
+              <% if @post.user.avatar.attached? %>
+                <%= image_tag @post.user.avatar, class: "rounded-circle me-2", style: "width: 40px; height: 40px; object-fit: cover;" %>
+              <% else %>
+                <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                  <i class="bi bi-person-fill text-white"></i>
+                </div>
+              <% end %>
+              <div>
+                <%= link_to "@#{@post.user.username}", profile_path(@post.user.username), class: "text-decoration-none fw-bold" %>
+                <br>
+                <small class="text-muted"><%= l @post.created_at, format: :long %></small>
+              </div>
+            </div>
+            
+            <% if current_user == @post.user %>
+              <div>
+                <%= link_to edit_post_path(@post), class: "btn btn-outline-primary btn-sm me-2" do %>
+                  <i class="bi bi-pencil"></i> Editar
+                <% end %>
+                <%= button_to post_path(@post), method: :delete, class: "btn btn-outline-danger btn-sm", form: { data: { turbo_confirm: "Tem certeza que deseja excluir este post?" } } do %>
+                  <i class="bi bi-trash"></i> Excluir
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <h1 class="card-title mb-3"><%= @post.title %></h1>
+          
+          <% if @post.tags.any? %>
+            <div class="mb-3">
+              <% @post.tags.each do |tag| %>
+                <%= link_to tag.name, tag_path(tag), class: "badge bg-secondary text-decoration-none me-1" %>
+              <% end %>
+            </div>
+          <% end %>
+          
+          <div class="card-text mb-4">
+            <%= simple_format @post.content %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Comentários -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Comentários (<%= @post.comments.count %>)</h4>
+          
+          <%= form_with(model: [@post, @comment], local: true, class: "mb-4") do |f| %>
+            <div class="mb-3">
+              <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "Escreva seu comentário..." %>
+            </div>
+
+            <% unless user_signed_in? %>
+              <div class="mb-3">
+                <%= f.label :author_name, "Seu nome", class: "form-label" %>
+                <%= f.text_field :author_name, class: "form-control", placeholder: "Digite seu nome para comentar anonimamente" %>
+                <div class="form-text">
+                  Você pode comentar anonimamente ou <%= link_to "fazer login", new_user_session_path %> para comentar com sua conta.
+                </div>
+              </div>
+            <% end %>
+
+            <%= f.submit "Comentar", class: "btn btn-primary" %>
+          <% end %>
+
+          <div class="comments-list">
+            <% @comments.each do |comment| %>
+              <div class="d-flex mb-4">
+                <div class="me-3">
+                  <% if comment.user&.avatar&.attached? %>
+                    <%= image_tag comment.user.avatar, class: "rounded-circle", style: "width: 32px; height: 32px; object-fit: cover;" %>
+                  <% else %>
+                    <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                      <i class="bi bi-person-fill text-white"></i>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <% if comment.user %>
+                        <%= link_to comment.author_display_name, profile_path(comment.user.username), class: "fw-bold text-decoration-none" %>
+                      <% else %>
+                        <span class="fw-bold"><%= comment.author_display_name %></span>
+                        <small class="text-muted">(Anônimo)</small>
+                      <% end %>
+                      <small class="text-muted ms-2"><%= l comment.created_at, format: :long %></small>
+                    </div>
+                    <% if current_user == comment.user %>
+                      <%= button_to post_comment_path(@post, comment), method: :delete, class: "btn btn-link text-danger btn-sm p-0", form: { data: { turbo_confirm: "Tem certeza?" } } do %>
+                        <i class="bi bi-trash"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="mt-2">
+                    <%= simple_format comment.content, class: "mb-0" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

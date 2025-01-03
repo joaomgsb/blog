@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: post) do |f| %>
+      <% if post.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= pluralize(post.errors.count, "erro") %> encontrado:</h4>
+          <ul>
+            <% post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= f.label :title, "Título", class: "form-label" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :content, "Conteúdo", class: "form-label" %>
+        <%= f.text_area :content, rows: 10, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :tag_ids, "Tags", class: "form-label" %>
+        <div class="row">
+          <% Tag.all.each do |tag| %>
+            <div class="col-md-3 mb-2">
+              <div class="form-check">
+                <%= check_box_tag "post[tag_ids][]", tag.id, post.tags.include?(tag), id: "post_tag_#{tag.id}", class: "form-check-input" %>
+                <%= label_tag "post_tag_#{tag.id}", tag.name, class: "form-check-label" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <small class="text-muted">Selecione uma ou mais tags para categorizar seu post</small>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <%= link_to "Cancelar", posts_path, class: "btn btn-outline-secondary" %>
+        <%= f.submit "Salvar Post", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,224 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+:root {
+  /* Cores principais mais vibrantes */
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary-color: #ec4899;
+  --accent-color: #8b5cf6;
+  
+  /* Gradientes modernos */
+  --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --gradient-secondary: linear-gradient(135deg, #ec4899, #f43f5e);
+  
+  /* Cores de fundo com tons mais suaves */
+  --background-light: #f8fafc;
+  --background-white: #ffffff;
+  --background-card: #ffffff;
+  
+  /* Cores de texto mais contrastantes */
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --text-muted: #94a3b8;
+  
+  /* Cores de borda e sombra */
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Estilos base modernos */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tipografia moderna */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.display-3 {
+  font-size: 3.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+/* Botões modernos */
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--gradient-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline-primary {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Cards modernos */
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  background: var(--background-card);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Links modernos */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* Badges modernos */
+.badge {
+  padding: 0.5em 1em;
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+
+/* Container com padding responsivo */
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 1200px;
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Navbar */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.025em;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--text-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  background-color: #f3f4f6;
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: #eff6ff;
+}
+
+/* Pagination */
+.pagination {
+  gap: 0.5rem;
+}
+
+.pagination .page-link {
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.pagination .page-link:hover {
+  background-color: #f3f4f6;
+  color: var(--primary-color);
+}
+
+.pagination .active .page-link {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Alerts */
+.alert {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+}
+
+.alert-success {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+
+.alert-danger {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  background-color: white;
+  border-top: 1px solid #e2e8f0;
+  padding: 2rem 0;
+}

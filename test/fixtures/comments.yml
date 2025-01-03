@@ -1,0 +1,9 @@
+comment_one:
+  content: "Ótimo post!"
+  post: one
+  user: one
+
+comment_two:
+  content: "Muito interessante!"
+  post: one
+  user: two

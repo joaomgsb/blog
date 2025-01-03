@@ -1,0 +1,104 @@
+<section class="login-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <h1 class="h3 fw-bold mb-3">Bem-vindo de volta!</h1>
+              <p class="text-muted">Entre para continuar compartilhando suas histórias</p>
+            </div>
+
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+              <div class="form-floating mb-3">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "nome@exemplo.com" %>
+                <%= f.label :email, "Email" %>
+              </div>
+
+              <div class="form-floating mb-3">
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Senha" %>
+                <%= f.label :password, "Senha" %>
+              </div>
+
+              <% if devise_mapping.rememberable? %>
+                <div class="form-check mb-3">
+                  <%= f.check_box :remember_me, class: "form-check-input" %>
+                  <%= f.label :remember_me, "Lembrar de mim", class: "form-check-label text-muted" %>
+                </div>
+              <% end %>
+
+              <div class="d-grid mb-4">
+                <%= f.submit "Entrar", class: "btn btn-primary btn-lg" %>
+              </div>
+
+              <div class="text-center">
+                <div class="mb-3">
+                  <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "text-decoration-none" %>
+                </div>
+                <p class="mb-0 text-muted">
+                  Ainda não tem uma conta? 
+                  <%= link_to "Cadastre-se", new_registration_path(resource_name), class: "text-decoration-none" %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% content_for :page_styles do %>
+<style>
+  .login-section {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+  }
+
+  .card {
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+  }
+
+  .form-floating > .form-control {
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .form-floating > .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.1);
+  }
+
+  .btn-primary {
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    background: var(--gradient-primary);
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: var(--gradient-secondary);
+  }
+
+  .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  a {
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--primary-hover);
+  }
+</style>
+<% end %>

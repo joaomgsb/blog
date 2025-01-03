@@ -1,0 +1,21 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Adicionar Comentário</h5>
+    
+    <%= form_with(model: [post, comment], local: true) do |f| %>
+      <% unless user_signed_in? %>
+        <div class="mb-3">
+          <%= f.label :author_name, "Seu Nome", class: "form-label" %>
+          <%= f.text_field :author_name, class: "form-control" %>
+        </div>
+      <% end %>
+      
+      <div class="mb-3">
+        <%= f.label :content, "Comentário", class: "form-label" %>
+        <%= f.text_area :content, rows: 3, class: "form-control" %>
+      </div>
+      
+      <%= f.submit "Comentar", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

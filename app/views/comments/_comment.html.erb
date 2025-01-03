@@ -1,0 +1,31 @@
+<div class="card mb-3 comment-card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start">
+      <div>
+        <h6 class="card-subtitle mb-2">
+          <% if comment.user %>
+            <i class="bi bi-person-circle me-2"></i><%= comment.user.email %>
+          <% else %>
+            <i class="bi bi-person me-2"></i><%= comment.author_name %>
+          <% end %>
+        </h6>
+        <small class="text-muted">
+          <i class="bi bi-clock me-2"></i><%= l comment.created_at, format: :short %>
+        </small>
+      </div>
+      
+      <% if user_signed_in? && comment.user == current_user %>
+        <%= button_to [post, comment], 
+            method: :delete,
+            class: "btn btn-sm btn-outline-danger",
+            form: { data: { turbo_confirm: "Tem certeza?" } } do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <p class="card-text mt-3">
+      <%= simple_format comment.content %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Redefinir Senha</h2>
+
+          <%= form_with(model: @user, url: password_path(token: params[:token]), method: :patch, local: true) do |f| %>
+            <% if @user.errors.any? %>
+              <div class="alert alert-danger">
+                <h4><%= pluralize(@user.errors.count, "erro") %> encontrado:</h4>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= f.label :password, "Nova senha", class: "form-label" %>
+              <%= f.password_field :password, class: "form-control", required: true %>
+              <div class="form-text">Mínimo de 6 caracteres</div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password_confirmation, "Confirme a nova senha", class: "form-label" %>
+              <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+            </div>
+
+            <div class="d-grid gap-2">
+              <%= f.submit "Alterar Senha", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
