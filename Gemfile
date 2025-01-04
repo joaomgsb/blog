@@ -24,7 +24,6 @@ gem "dotenv-rails", groups: [ :development, :test ]
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
@@ -50,9 +49,6 @@ gem "devise"
 # Paginação
 gem "kaminari"
 
-# Validações para Active Storage
-gem "active_storage_validations"
-
 # Cache
 gem "solid_cache"
 
@@ -60,6 +56,7 @@ gem "solid_cache"
 gem "sidekiq"
 
 gem "redis"
+gem "mini_racer", platforms: :ruby
 
 gem "mutex_m"
 gem "bigdecimal"

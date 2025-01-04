@@ -180,6 +180,8 @@ GEM
       letter_opener (~> 1.9)
       railties (>= 6.1)
       rexml
+    libv8-node (18.19.0.0)
+    libv8-node (18.19.0.0-x86_64-linux)
     logger (1.6.4)
     loofah (2.23.1)
       crass (~> 1.0.2)
@@ -193,6 +195,8 @@ GEM
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
+    mini_racer (0.16.0)
+      libv8-node (~> 18.19.0.0)
     minitest (5.25.4)
     msgpack (1.7.5)
     mutex_m (0.3.0)
@@ -424,6 +428,7 @@ DEPENDENCIES
   kamal
   kaminari
   letter_opener_web
+  mini_racer
   mutex_m
   pg (~> 1.1)
   propshaft

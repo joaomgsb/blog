@@ -18,9 +18,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  cable:
-    adapter: postgresql
-    database: blog_cable_production
-    username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] || "postgres" %>
-    password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
-    host: <%= ENV['PRODUCTION_DATABASE_HOST'] || "localhost" %>

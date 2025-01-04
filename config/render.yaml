@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: BlogApp
+    env: ruby
+    plan: free # Altere para o plano desejado (free, starter, etc.)
+    buildCommand: |
+      bundle install
+      yarn install
+      bundle exec rake assets:precompile
+    startCommand: |
+      bundle exec rails server -b 0.0.0.0 -p $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false # Defina no painel da Render
+      - key: SECRET_KEY_BASE
+        sync: false # Gere a chave com `rails secret` e configure no painel
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_LOG_LEVEL
+        value: info
+      - key: RAILS_SERVE_STATIC_FILES
+        value: true
+      - key: RAILS_MASTER_KEY
+        sync: false # Configure no painel da Render se estiver usando credentials
+
+databases:
+  - name: BlogDatabase
+    plan: free # Plano do banco de dados (free, starter, etc.)
+    region: us-east # Altere para a região desejada
+    envVars:
+      - key: DATABASE_URL
