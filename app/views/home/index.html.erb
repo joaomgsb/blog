@@ -1,29 +1,27 @@
 <div class="hero-section py-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h1 class="display-3 fw-bold mb-4">
-          Compartilhe suas histórias com o mundo
-        </h1>
-        <p class="lead text-muted mb-5">
-          Um espaço para expressar suas ideias, compartilhar conhecimento e conectar-se com pessoas incríveis.
-        </p>
+  <div class="row justify-content-center mx-0">
+    <div class="col-lg-8 text-center">
+      <h1 class="display-3 fw-bold mb-4">
+        Compartilhe suas histórias com o mundo
+      </h1>
+      <p class="lead text-muted mb-5">
+        Um espaço para expressar suas ideias, compartilhar conhecimento e conectar-se com pessoas incríveis.
+      </p>
+      
+      <div class="d-flex gap-3 justify-content-center">
+        <%= link_to posts_path, class: "btn btn-primary btn-lg" do %>
+          <i class="bi bi-book"></i> Explorar Posts
+        <% end %>
         
-        <div class="d-flex gap-3 justify-content-center">
-          <%= link_to posts_path, class: "btn btn-primary btn-lg" do %>
-            <i class="bi bi-book"></i> Explorar Posts
+        <% if user_signed_in? %>
+          <%= link_to new_post_path, class: "btn btn-outline-primary btn-lg" do %>
+            <i class="bi bi-plus-lg"></i> Criar Post
           <% end %>
-          
-          <% if user_signed_in? %>
-            <%= link_to new_post_path, class: "btn btn-outline-primary btn-lg" do %>
-              <i class="bi bi-plus-lg"></i> Criar Post
-            <% end %>
-          <% else %>
-            <%= link_to new_user_registration_path, class: "btn btn-outline-primary btn-lg" do %>
-              <i class="bi bi-person-plus"></i> Criar Conta
-            <% end %>
+        <% else %>
+          <%= link_to new_user_registration_path, class: "btn btn-outline-primary btn-lg" do %>
+            <i class="bi bi-person-plus"></i> Criar Conta
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -31,79 +29,83 @@
 
 <% if @featured_posts&.any? %>
   <div class="featured-posts py-5 bg-light">
-    <div class="container">
-      <div class="text-center mb-5">
+    <div class="row justify-content-center mx-0">
+      <div class="col-12 text-center mb-5">
         <h2 class="fw-bold">Posts em Destaque</h2>
         <p class="text-muted">Confira algumas das melhores publicações da nossa comunidade</p>
       </div>
 
-      <div class="row g-4">
-        <% @featured_posts.each do |post| %>
-          <div class="col-md-4">
-            <div class="card h-100 post-card">
-              <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                  <%= link_to profile_path(post.user.username), class: "d-flex align-items-center text-decoration-none gap-2" do %>
-                    <% if post.user.avatar.attached? %>
-                      <%= image_tag post.user.avatar, class: "rounded-circle", style: "width: 32px; height: 32px; object-fit: cover;" %>
-                    <% else %>
-                      <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                        <i class="bi bi-person-fill text-white"></i>
-                      </div>
+      <div class="col-lg-10">
+        <div class="row g-4">
+          <% @featured_posts.each do |post| %>
+            <div class="col-md-4">
+              <div class="card h-100 post-card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <%= link_to profile_path(post.user.username), class: "d-flex align-items-center text-decoration-none gap-2" do %>
+                      <% if post.user.avatar.attached? %>
+                        <%= image_tag post.user.avatar, class: "rounded-circle", style: "width: 32px; height: 32px; object-fit: cover;" %>
+                      <% else %>
+                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                          <i class="bi bi-person-fill text-white"></i>
+                        </div>
+                      <% end %>
+                      <span class="fw-medium text-dark">@<%= post.user.username %></span>
                     <% end %>
-                    <span class="fw-medium text-dark">@<%= post.user.username %></span>
+                  </div>
+
+                  <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
+                  <p class="card-text text-muted"><%= truncate(post.content, length: 100) %></p>
+                  
+                  <%= link_to post_path(post), class: "stretched-link" do %>
                   <% end %>
                 </div>
-
-                <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
-                <p class="card-text text-muted"><%= truncate(post.content, length: 100) %></p>
-                
-                <%= link_to post_path(post), class: "stretched-link" do %>
-                <% end %>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 <% end %>
 
 <div class="features-section py-5">
-  <div class="container">
-    <div class="text-center mb-5">
+  <div class="row justify-content-center mx-0">
+    <div class="col-12 text-center mb-5">
       <h2 class="fw-bold">Por que escolher nosso blog?</h2>
       <p class="text-muted">Uma plataforma completa para compartilhar suas ideias</p>
     </div>
 
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="text-center">
-          <div class="feature-icon mb-3">
-            <i class="bi bi-pencil-square display-4 text-primary"></i>
+    <div class="col-lg-10">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="text-center">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-pencil-square display-4 text-primary"></i>
+            </div>
+            <h4>Editor Intuitivo</h4>
+            <p class="text-muted">Crie posts facilmente com nosso editor amigável e ferramentas de formatação.</p>
           </div>
-          <h4>Editor Intuitivo</h4>
-          <p class="text-muted">Crie posts facilmente com nosso editor amigável e ferramentas de formatação.</p>
         </div>
-      </div>
-      
-      <div class="col-md-4">
-        <div class="text-center">
-          <div class="feature-icon mb-3">
-            <i class="bi bi-tags display-4 text-primary"></i>
+        
+        <div class="col-md-4">
+          <div class="text-center">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-tags display-4 text-primary"></i>
+            </div>
+            <h4>Organização por Tags</h4>
+            <p class="text-muted">Categorize seus posts com tags para facilitar a descoberta de conteúdo.</p>
           </div>
-          <h4>Organização por Tags</h4>
-          <p class="text-muted">Categorize seus posts com tags para facilitar a descoberta de conteúdo.</p>
         </div>
-      </div>
-      
-      <div class="col-md-4">
-        <div class="text-center">
-          <div class="feature-icon mb-3">
-            <i class="bi bi-chat-dots display-4 text-primary"></i>
+        
+        <div class="col-md-4">
+          <div class="text-center">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-chat-dots display-4 text-primary"></i>
+            </div>
+            <h4>Comunidade Ativa</h4>
+            <p class="text-muted">Interaja com outros usuários através de comentários e discussões.</p>
           </div>
-          <h4>Comunidade Ativa</h4>
-          <p class="text-muted">Interaja com outros usuários através de comentários e discussões.</p>
         </div>
       </div>
     </div>
